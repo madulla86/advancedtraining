@@ -13,16 +13,16 @@ public class HelloMavenTest extends FunctionalTestCase {
         runFlowAndExpect("mavenFlow", "Hello Maven");
     }
     
+    @Override
+    protected String getConfigFile() {
+        return "advancedtraining.xml";
+    }
+    
     @Test
     public void retrieveFlightsAddsAppropriateHeader() throws Exception {
       MuleEvent event = runFlow("retrieveFlights");
       String contentType = event.getMessage().getOutboundProperty("Content-Type");
       assertEquals("application/json", contentType);
-    }
-    
-    @Override
-    protected String getConfigFile() {
-        return "advancedtraining.xml";
     }
 
 }
